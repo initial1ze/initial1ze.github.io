@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="greeting">Hola 👋</div>
+                {% for paragraph in config.extra.intro_paragraphs %}
+                <p class="intro-paragraph" data-text="{{ paragraph }}"></p>
+                {% endfor %}
+
+                <div class="contact-info">
+                    {% for contact in config.extra.contact %}
+                    <span class="contact-item">
+                        <img src="{{ get_url(path=contact.icon) }}" alt="{{ contact.text }}" class="contact-icon">
+                        <a href="{{ contact.url }}" {% if contact.new_tab or (not contact.url |
+                            starts_with(string="mailto:" )) %}target="_blank" rel="noopener noreferrer" {% endif %}>{{
+                            contact.text }}</a>
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{{ get_url(path='images/profile.jpg') }}" alt="{{ config.extra.author }}"
+                    class="profile-photo">
+            </div>
+        </div>
+    </section>
+
+    {% if config.extra.show_skills %}
+    <section class="tech-stack">
+        <div class="tech-categories">
+            <div class="tech-group">
+                <span class="tech-label">Languages:</span>
+                {% for lang in config.extra.languages %}
+                <span class="tech-item">{{ lang }}</span>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="tech-group">
+                <span class="tech-label">Tools & Platforms:</span>
+                {% for tech in config.extra.technologies %}
+                <span class="tech-item">{{ tech }}</span>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</div>
+
+<script>
+    // Parse markdown-style links [url]{text} in intro paragraphs
+    document.addEventListener('DOMContentLoaded', function () {
+        const paragraphs = document.querySelectorAll('.intro-paragraph[data-text]');
+
+        paragraphs.forEach(function (paragraph) {
+            const text = paragraph.getAttribute('data-text');
+
+            // Regular expression to match [url]{text} pattern
+            const linkRegex = /\[([^\]]+)\]\{([^}]+)\}/g;
+            let html = text;
+            let match;
+
+            // Replace all [url]{text} patterns with actual links
+            while ((match = linkRegex.exec(text)) !== null) {
+                const linkUrl = match[1];
+                const linkText = match[2];
+                const linkHtml = `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+                html = html.replace(match[0], linkHtml);
+            }
+
+            paragraph.innerHTML = html;
+            paragraph.removeAttribute('data-text');
+        });
+    });
+</script>
+
+{% endblock content %}

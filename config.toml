@@ -1,0 +1,100 @@
+#########################
+# Site Settings
+#########################
+base_url = "https://initial1ze.github.io/"
+compile_sass = true
+build_search_index = true
+title = "Rajesh Kumar Yada"
+description = "Personal website and blog of Rajesh Kumar Yadav, Software Engineer"
+default_language = "en"
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+
+#########################
+# Taxonomies
+#########################
+taxonomies = [
+    {name = "tags", feed = true},
+]
+
+#########################
+# Markdown / Rendering
+#########################
+[markdown]
+highlight_code = true
+highlight_theme = "inspired-github"
+
+#########################
+# Main Navigation Menu
+#########################
+[[extra.menu]]
+name = "Home"
+url = "/"
+
+[[extra.menu]]
+name = "Blog"
+url = "/blog/"
+
+[[extra.menu]]
+name = "Resume"
+url = "https://drive.google.com/file/d/1Bof-RsAbeO0PmxQXQS3D_9KPFmuVIcml/view?usp=sharing"
+new_tab = true
+
+#########################
+# Hero Section
+#########################
+[extra]
+author = "Ry"
+current_location = "India"
+
+intro_paragraphs = [
+    "I'm Rajesh Kumar Yadav. I work at [https://www.infosys.com]{Infosys} where I work on backend systems.",
+    "When I'm not shipping code at work, I'm deepening my understanding about distrubuted systems and backend systems."
+]
+
+show_experience = true
+show_skills = true
+show_education = true
+
+languages = ["Java", "Python", "SQL", "JavaScript"]
+technologies = ["Spring", "Docker", "PostgreSQL", "Redis"]
+
+[[extra.contact]]
+icon = "icons/email.svg"
+text = "yrajesh521@gmail.com"
+url = "mailto:yrajesh521@gmail.com"
+new_tab = false
+
+[[extra.contact]]
+icon = "icons/twitter.svg"
+text = "@initial1ze"
+url = "https://twitter.com/initial1ze"
+new_tab = true
+
+[[extra.contact]]
+icon = "icons/linkedin.svg"
+text = "yrajesh521"
+url = "https://linkedin.com/in/yrajesh521"
+new_tab = true
+
+[[extra.contact]]
+icon = "icons/github.svg"
+text = "initial1ze"
+url = "https://github.com/initial1ze"
+new_tab = true
+
+
+#########################
+# Footer Configuration
+#########################
+[[extra.footer_links]]
+text = "LinkedIn"
+url = "https://linkedin.com/in/yrajesh521"
+
+[[extra.footer_links]]
+text = "GitHub"
+url = "https://github.com/initial1ze"
+
+[[extra.footer_links]]
+text = "RSS"
+url = "rss.xml"
